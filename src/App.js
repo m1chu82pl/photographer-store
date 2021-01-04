@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import firebase from './firebase'
 import logo from './logo.svg';
 import './App.css';
 
+
+
 function App() {
+
+  useEffect(() => {
+    const messaging = firebase.messaging()
+    messaging.requestPermission()
+      .then(async function() {
+        const token = await messaging.getToken();
+        console.log(token);
+      })
+      .catch(function(err) {
+        console.log("Unable to get permission to notify.", err);
+      });
+    navigator.serviceWorker.addEventListener("message", (message) => console.log(message));
+  }, [])
+
   return (
     <div className="App">
       <header className="App-header">
