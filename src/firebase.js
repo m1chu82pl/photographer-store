@@ -1,4 +1,4 @@
-import firebase from 'firebase/app';
+import firebase from "firebase/app"
 import 'firebase/messaging';
 
 // Your web app's Firebase configuration
